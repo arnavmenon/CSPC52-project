@@ -5,6 +5,9 @@ ReactJS + NodeJS and MySQL
 
 ## setup
 
+## db
+`cd src/db` then `node seed.js`
+
 ### backend
 
 1. `npm i` in  root directory

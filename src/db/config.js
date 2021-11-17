@@ -5,7 +5,8 @@ config =  {
     host     : 'localhost',
     user     : 'root',
     password : process.env.dbPass,
-    database : process.env.dbName
+    database : process.env.dbName,
+    multipleStatements: true
   };
 
 const db = mysql.createConnection(config);
@@ -14,7 +15,6 @@ db.connect((err) =>{
     if(err){
         throw(err)
     }
-
     console.log("Connected to MySQL");
 });
 
