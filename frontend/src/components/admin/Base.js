@@ -1,15 +1,16 @@
 import React from 'react'
 import NavBar from '../general/NavBar';
 import { Button, Checkbox, Form } from 'semantic-ui-react'
-import Sidemenu from './Sidemenu';
-
+import Table2 from './Table2';
+import NavBar2 from './NavBar2';
 
 
 function Base() {
 
   return (
-      <div>
-          <Sidemenu/>
+      <div style={{margin: '20px'}}> 
+          <NavBar2/>
+          <Table2/>
       </div>
   );
 }

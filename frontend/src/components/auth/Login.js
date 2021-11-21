@@ -1,5 +1,6 @@
 import React from 'react'
 import NavBar from '../general/NavBar';
+import { Link } from "react-router-dom";
 import { Button, Checkbox, Form } from 'semantic-ui-react'
 
 
@@ -21,9 +22,18 @@ function Login() {
     </Form.Field>
     <Form.Field>
       <label>Password</label>
-      <input placeholder='Last Name' />
+      <input type = 'password' />
     </Form.Field>
-    <Button type='submit'>Submit</Button>
+    <Button >
+    <Link to="/admin" class = "ui item">
+        Login
+      </Link>
+    </Button>
+    <Button >
+      <Link to="/register" class = "ui item">
+        Register
+      </Link>
+    </Button>
   </Form>
     </div>
     </div>
