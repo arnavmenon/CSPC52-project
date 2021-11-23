@@ -1,9 +1,8 @@
 const mysql = require('mysql2');
 
-
 config =  {
     host     : 'localhost',
-    user     : 'root',
+    user     : process.env.userName,
     password : process.env.dbPass,
     database : process.env.dbName,
     multipleStatements: true
@@ -18,6 +17,4 @@ db.connect((err) =>{
     console.log("Connected to MySQL");
 });
 
-module.exports ={
-    db : mysql.createConnection(config) 
-} 
+module.exports = db;

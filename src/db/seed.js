@@ -13,7 +13,7 @@ let query = () => {
   let temp=db.query(seedData, (err, rows)=>{
     if(err) throw err;
     console.log(rows);
-    res.send("Done");
+    //res.send("Done");
   });
 }
 
