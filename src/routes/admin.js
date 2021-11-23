@@ -24,8 +24,4 @@ router.post("/addPerson", (req,res) =>{
     //res.send(rows);
 });
 
-
-
-
-
 module.exports = router;
