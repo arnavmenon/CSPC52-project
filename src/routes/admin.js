@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const config = require("../db/config");
-const db=config.db;
+const db=config;
 
 router.get("/showAll", (req,res) =>{
     let SQL="SELECT * FROM persons";

@@ -113,8 +113,7 @@ exports.remove = (req, res) => {
             res.send({
                 message: `Airline with ID ${req.params.id} successfully removed`
             })
-    })
-  
+    });
 };
 
 // Delete all Airlines from the database.
@@ -123,7 +122,7 @@ exports.removeAll = (req, res) => {
         if (err)
           res.status(500).send({
             message:
-              err.message || "Some error occurred while removing all tutorials."
+              err.message || "Some error occurred while removing all flights."
           });
         else res.send({ message: `All Airlines were deleted successfully!` });
     });

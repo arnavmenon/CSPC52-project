@@ -1,4 +1,4 @@
-const sql = require('../config.js')
+const sql = require('../config.js');
 
 //constructor for Airline Object
 const Airline = function(airline) {
