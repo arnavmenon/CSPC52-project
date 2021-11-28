@@ -1,19 +1,19 @@
 require('dotenv').config({ path: '../env/.env' });
-const config = require("./config");
-const db=config.db;
+const db= require('./config.js');
 const path = require('path');
 const fs = require('fs');
 
+db.connect();
 console.log("Seeding database...")
 const seedData = fs.readFileSync(path.join(__dirname, 'data.sql')).toString();
 
-//console.log(seedData);
+console.log(seedData);
 
 let query = () => { 
-  let temp=db.query(seedData, (err, rows)=>{
+    let temp= db.query(seedData, (err, rows)=>{
     if(err) throw err;
     console.log(rows);
-    //res.send("Done");
+    res.send("Done");
   });
 }
 
