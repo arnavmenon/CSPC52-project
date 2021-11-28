@@ -5,6 +5,8 @@ import axios from "axios"
 export default function ScheduleTable (props) {
 
   const [displayedFlights, setDisplayedFlights] = useState([]);
+  const [arrFlights, setArrFlights] = useState([]);
+  const [depFlights, setDepFlights] = useState([]);
   const [board, setBoard] = useState("Departures");
   const [filter, setFilter] = useState("Location")
 
@@ -39,19 +41,30 @@ export default function ScheduleTable (props) {
     let requiredFlights;
 
     if(board=="Departures"){    
-      requiredFlights = props.flights.filter(function(e){
-        return e.SOURCE=="MAA";
-      });
+      requiredFlights = depFlights;
     }
-
     else{
-      requiredFlights = props.flights.filter(function(e){
-        return e.DESTINATION=="MAA";
-      });
+      requiredFlights = arrFlights;
     }
 
     return requiredFlights;
   }
+
+  useEffect(()=>{
+
+    let f1,f2;
+
+    f1 = props.flights.filter(function(e){
+      return e.SOURCE=="MAA";
+    });
+    f2 = props.flights.filter(function(e){
+      return e.DESTINATION=="MAA";
+    });
+
+    setDepFlights(f1);
+    setArrFlights(f2);
+
+  },[])
 
   useEffect(()=>{
 
@@ -88,20 +101,21 @@ export default function ScheduleTable (props) {
     let searchRegExp = new RegExp(searchTerm , 'i');
     let res;
 
-    console.log(filter, board);
+    //console.log(filter, board);
 
     if(board=="Departures"){
-      res = displayedFlights.filter(function(e){
+      res = depFlights.filter(function(e){
         return searchRegExp.test(e.DESTINATION);
       });
     }
 
     else{
-      res = displayedFlights.filter(function(e){
+      res = arrFlights.filter(function(e){
         return searchRegExp.test(e.SOURCE);
       });
     }
 
+    console.log(res);
     setDisplayedFlights(res);
     //console.log(res);
 

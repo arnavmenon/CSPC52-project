@@ -4,7 +4,6 @@ import NavBar from '../general/NavBar';
 import ScheduleTable from './Table';
 import { useLocation } from 'react-router-dom'
 import { Header } from 'semantic-ui-react';
-import Base from '../admin/Base'
 
 
 export default function Homepage() {
