@@ -2,7 +2,7 @@ const mysql = require('mysql2');
 
 config =  {
     host     : 'localhost',
-    user     : process.env.userName,
+    user     : 'root',
     password : process.env.dbPass,
     database : process.env.dbName,
     multipleStatements: true

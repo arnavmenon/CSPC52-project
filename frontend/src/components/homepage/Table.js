@@ -53,6 +53,7 @@ export default function ScheduleTable (props) {
   useEffect(()=>{
 
     let f1,f2;
+    console.log(props.flights);
 
     f1 = props.flights.filter(function(e){
       return e.SOURCE=="MAA";
@@ -63,8 +64,9 @@ export default function ScheduleTable (props) {
 
     setDepFlights(f1);
     setArrFlights(f2);
+    console.log(f1,f2);
 
-  },[])
+  },[props.flights])
 
   useEffect(()=>{
 
@@ -77,7 +79,7 @@ export default function ScheduleTable (props) {
     setDisplayedFlights(reqd);
     //setDisplayedFlights(props.flights);
 
-  },[props.flights, board]);
+  },[props.flights, board, depFlights, arrFlights]);
 
   const getAirlineName = (airline_id) => {
 
@@ -115,7 +117,7 @@ export default function ScheduleTable (props) {
       });
     }
 
-    console.log(res);
+    //console.log(res);
     setDisplayedFlights(res);
     //console.log(res);
 
