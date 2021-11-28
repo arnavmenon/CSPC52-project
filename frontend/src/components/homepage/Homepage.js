@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from "axios"
 import NavBar from '../general/NavBar';
 import ScheduleTable from './Table';
+import { useLocation } from 'react-router-dom'
 import { Header } from 'semantic-ui-react';
 import Base from '../admin/Base'
 
