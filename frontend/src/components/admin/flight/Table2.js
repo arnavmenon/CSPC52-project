@@ -1,10 +1,39 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { Icon, Label, Menu, Table, Button } from 'semantic-ui-react'
 
-const ScheduleTable = () => (
-  <Table celled inverted style = {{width: '95vw', margin: '2.5vw'}}>
+const ScheduleTable = (props) => {
+  let k = props.data
+  let res = [];
+  k.map((x, index) => {
+    res.push(
+    <Table.Row key = {index}>
+    				
+    <Table.Cell>{x.FLIGHT_CODE}</Table.Cell>
+    <Table.Cell>{x.SOURCE}</Table.Cell>
+    <Table.Cell>{x.DESTINATION}</Table.Cell>
+    <Table.Cell>{x.ARRIVAL}</Table.Cell>
+    <Table.Cell>{x.DEPARTURE}</Table.Cell>
+    <Table.Cell>{x.STATUS}</Table.Cell>
+    <Table.Cell>{x.DURATION}</Table.Cell>
+    <Table.Cell>{x.FLIGHTTYPE}</Table.Cell>
+    <Table.Cell>{x.AIRLINE}</Table.Cell>
+    <Table.Cell>
+        <Button.Group>
+          <Link to = 'update' state = {{x}}>
+            <Button color = 'blue'>Update</Button>
+          </Link>
+            <Button color = 'red'>Remove</Button>
+        </Button.Group>
+    </Table.Cell>
+  </Table.Row>
+    )
+})
+  return (
+  <Table celled inverted style = {{width: '95vw', margin: '0 auto'}}>
     <Table.Header>
       <Table.Row>
+      {/* FLIGHT_CODE, SOURCE, DESTINATION, ARRIVAL, DEPARTURE, STATUS, DURATION, FLIGHTTYPE */}
         <Table.HeaderCell>Flight_Code</Table.HeaderCell>
         <Table.HeaderCell>Source</Table.HeaderCell>
         <Table.HeaderCell>Destination</Table.HeaderCell>
@@ -13,8 +42,6 @@ const ScheduleTable = () => (
         <Table.HeaderCell>Status</Table.HeaderCell>
         <Table.HeaderCell>Duration</Table.HeaderCell>
         <Table.HeaderCell>Flight_Type</Table.HeaderCell>
-        <Table.HeaderCell>Layover Time</Table.HeaderCell>
-        <Table.HeaderCell>No_of_stops</Table.HeaderCell>
         <Table.HeaderCell>Airline</Table.HeaderCell>
         <Table.HeaderCell>Actions</Table.HeaderCell>
         
@@ -22,31 +49,12 @@ const ScheduleTable = () => (
     </Table.Header>
 
     <Table.Body>
-      <Table.Row>
+      {
+        res
+      }
+      {/* <Table.Row>
         <Table.Cell>cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
         <Table.Cell>cell</Table.Cell>
@@ -66,7 +74,23 @@ const ScheduleTable = () => (
         <Table.Cell>cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
+        <Table.Cell>Cell</Table.Cell>
         <Table.Cell>cell</Table.Cell>
+        <Table.Cell>Cell</Table.Cell>
+        <Table.Cell>Cell</Table.Cell>
+        <Table.Cell>cell</Table.Cell>
+        <Table.Cell>Cell</Table.Cell>
+        <Table.Cell>
+            <Button.Group>
+                <Button color = 'blue'>Update</Button>
+                <Button color = 'red'>Remove</Button>
+            </Button.Group>
+        </Table.Cell>
+        
+      </Table.Row>
+      <Table.Row>
+        <Table.Cell>cell</Table.Cell>
+        <Table.Cell>Cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
         <Table.Cell>cell</Table.Cell>
@@ -86,8 +110,6 @@ const ScheduleTable = () => (
         <Table.Cell>cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
         <Table.Cell>cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
@@ -106,8 +128,6 @@ const ScheduleTable = () => (
         <Table.Cell>cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
         <Table.Cell>cell</Table.Cell>
         <Table.Cell>Cell</Table.Cell>
@@ -121,87 +141,7 @@ const ScheduleTable = () => (
             </Button.Group>
         </Table.Cell>
         
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
+      </Table.Row> */}
       
 
 
@@ -226,6 +166,6 @@ const ScheduleTable = () => (
       </Table.Row>
     </Table.Footer>
   </Table>
-)
+)}
 
 export default ScheduleTable

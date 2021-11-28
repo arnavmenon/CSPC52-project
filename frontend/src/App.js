@@ -1,13 +1,18 @@
 import './App.css';
-import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css'
 import Homepage from './components/homepage/Homepage';
-import Base from './components/admin/Base';
+import FlightBase from './components/admin/flight/FlightBase';
 import Login from './components/auth/Login'
 import Register from './components/auth/Register';
-import AddNew from './components/admin/AddNew';
-
+import FlightAdd from './components/admin/flight/FlightAdd';
+import AirlineAdd from './components/admin/airline/AirlineAdd';
+import AiportAdd from './components/admin/airport/AirportAdd';
+import AirlineBase from './components/admin/airline/AirlineBase';
+import AirportBase from './components/admin/airport/AirportBase';
+import FlightUpdate from './components/admin/flight/FlightUpdate';
+import AirlineUpdate from './components/admin/airline/AirlineUpdate';
+import AirportUpdate from './components/admin/airport/AirportUpdate';
 
 function App() {
   return (
@@ -17,9 +22,16 @@ function App() {
         <Routes>
         <Route path="/" element = {<Homepage />} />
         <Route path="/login" element = { <Login />}/>
-        <Route path="/admin" element = { <Base />}/>
         <Route path="/register" element = { <Register />}/>
-        <Route path="/add" element = { <AddNew />}/>
+        <Route path="/admin/flight" element = { <FlightBase />}/>
+        <Route path="/admin/airline" element = { <AirlineBase />}/>
+        <Route path="/admin/airport" element = { <AirportBase />}/>
+        <Route path="/admin/flight/add" element = { <FlightAdd />}/>
+        <Route path="/admin/airline/add" element = { <AirlineAdd />}/>
+        <Route path="/admin/airport/add" element = { <AiportAdd />}/>
+        <Route path="/admin/flight/update" element = { <FlightUpdate />}/>
+        <Route path="/admin/airline/update" element = { <AirlineUpdate />}/>
+        <Route path="/admin/airport/update" element = { <AirportUpdate />}/>
       </Routes>
       </div>
     </div>

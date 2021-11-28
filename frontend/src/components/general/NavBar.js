@@ -2,7 +2,9 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const NavBar = () => (
 <div class="ui secondary pointing menu">
-    <Link to="/" class = "item">
+    <Link 
+    to="/"
+    class = "item">
       Home
     </Link>
     <div class="right menu">
