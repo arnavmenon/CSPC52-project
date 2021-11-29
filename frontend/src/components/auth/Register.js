@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import axios from 'axios';
 import NavBar from '../general/NavBar';
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form } from 'semantic-ui-react'
@@ -9,18 +10,29 @@ function Register() {
   const [username, setUsername] = useState()
   const [pass, setPass] = useState()
   const [pass2, setPass2] = useState()
-
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     // AP_NAME, ID, STATE, COUNTRY, CITY
     e.preventDefault();
     if(pass === pass2){
       let res = {
-        USERNAME: username,
-        PASSWORD: pass
+        username: username,
+        password: pass
       }
       console.log(res);
-      navigate('/admin/flight')
+      axios
+        .post("http://localhost:3001/admin/register", res)
+        .then((response)=>{
+            console.log(response.status);
+            alert("new user added.");
+            navigate('/admin/flight')
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+
+
     }
     else{
       navigate('/register')
@@ -28,7 +40,7 @@ function Register() {
     
 }
 
-  const navigate = useNavigate() 
+ 
   return (
     <div style={{margin: '20px'}}>
 
