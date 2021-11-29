@@ -45,7 +45,7 @@ module.exports = app => {
         }
         else
         {
-            res.send('Please enter Username and Password!');
+            res.send('Please enter Username and Password!').status(400);
 		    res.end();
         }
     });
@@ -61,7 +61,7 @@ module.exports = app => {
     router.get('/logout', (req, res) => {
         req.session.destroy();
         console.log('User has been logged out!!');
-        res.send('User has been logged out !').status(400);
+        res.send('User has been logged out !').status(200);
     });
 
     app.use('/admin', router);
