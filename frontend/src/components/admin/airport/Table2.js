@@ -17,7 +17,7 @@ return (
   <Table celled inverted style = {{width: 'max-content', margin: '0 auto'}}>
     <Table.Header>
       <Table.Row>
-        <Table.HeaderCell>AP_NAME</Table.HeaderCell>
+        <Table.HeaderCell>AIRPORT</Table.HeaderCell>
         <Table.HeaderCell>ID</Table.HeaderCell>
         <Table.HeaderCell>STATE</Table.HeaderCell>
         <Table.HeaderCell>COUNTRY</Table.HeaderCell>

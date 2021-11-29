@@ -47,7 +47,7 @@ const handleSubmit = () => {
   return (
       <div style={{margin:'20px'}}>
           <NavBar2/>
-          <Header size='large'>Update Entry</Header>
+          <Header size='large'>Update Flight Details</Header>
     <div style={{margin: '0 auto', width: '50vw', textAlign:'left'}}>
             
             <Form onSubmit = {handleSubmit}>
