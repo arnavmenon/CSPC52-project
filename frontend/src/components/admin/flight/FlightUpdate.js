@@ -1,4 +1,4 @@
-import React, {useState, userEffect, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import { Button, Form, Header } from 'semantic-ui-react';
 import NavBar2 from '../general/NavBar2';
@@ -18,7 +18,7 @@ const [airl, setAirl] = useState('')
 
 const location = useLocation()
 const x = location.state
-
+console.log(x);
 
 useEffect(() => {
     setCode(x.FLIGHT_CODE)
@@ -116,7 +116,7 @@ const handleSubmit = () => {
                 onChange = {(e) => setAirl(e.target.value)}
                 />
             </Form.Field>
-            <Button type='submit'>Add</Button>
+            <Button type='submit'>Update</Button>
             </Form>
     </div>
     </div>

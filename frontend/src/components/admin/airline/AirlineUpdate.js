@@ -3,16 +3,16 @@ import NavBar from '../../general/NavBar';
 import { Link, useLocation } from "react-router-dom";
 import { Button, Checkbox, Form, Header } from 'semantic-ui-react'
 import NavBar2 from '../general/NavBar2';
-
-
+import axios from "axios";
 
 function AirlineUpdate() {
-    const [id, setId] = useState()
-    const [alName, setAlName] = useState()
-    const [code, setCode] = useState()
+    const [id, setId] = useState('')
+    const [alName, setAlName] = useState('')
+    const [code, setCode] = useState('')
 
     const location = useLocation()
-    const {x} = location.state
+    const x = location.state
+    console.log(x);
     
     useEffect(() => {
         setId(x.ID)
@@ -24,11 +24,22 @@ function AirlineUpdate() {
     // AP_NAME, ID, STATE, COUNTRY, CITY
     e.preventDefault();
     let res = {
-        ID: id,
-        AL_NAME: alName, 
-        CODE: code
+        id: id,
+        al_name: alName, 
+        code: code
     }
     console.log(res);
+
+    axios
+        .put(`http://localhost:3001/api/airline/${id}`, res)
+        .then((response)=>{
+            console.log(response);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+
+    alert("Airline updated successfully!");
 }
   return (
       <div style={{margin:'20px'}}>
@@ -58,7 +69,7 @@ function AirlineUpdate() {
                 onChange = {(e) => {setCode(e.target.value)}}
                 />
             </Form.Field>
-            <Button type='submit'>Add</Button>
+            <Button type='submit'>Update</Button>
             </Form>
     </div>
     </div>

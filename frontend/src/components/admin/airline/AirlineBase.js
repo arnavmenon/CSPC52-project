@@ -1,20 +1,58 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react';
 import { Link } from "react-router-dom";
 import { Button, Checkbox, Form,Icon } from 'semantic-ui-react'
 import Table2 from './Table2';
 import NavBar2 from '../general/NavBar2';
+import axios from "axios"
 
 
 function AirlineBase() {
 
+  const [airlines, setAirlines]=useState([]);
+
+  useEffect(() => {
+
+    axios
+      .get("http://localhost:3001/api/airline/")
+      .then((response)=>{
+        setAirlines(response.data);
+        console.log(response.data);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+  },[]);
+
+  const deleteHandler = (airline) => {
+
+    alert("Are you sure you want to delete airline code " + airline.CODE + "?");
+    
+    let f1 = airlines.filter(function(e){
+      return e.CODE != airline.CODE;
+    });
+    
+    axios
+      .delete(`http://localhost:3001/api/airline/${airline.ID}`)
+      .then((response)=>{
+        console.log("hi");
+        console.log(response.data,f1);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+
+      setAirlines(f1);
+
+  }
+  
+
   return (
       <div style={{margin: '20px'}}> 
           <NavBar2/>
-          <Table2 data = {[
-            {
-              ID:'AA', AL_NAME: 'American Airlines', CODE: '001'
-            }
-          ]} />
+          <Table2
+            airlines={airlines}
+            deleteHandler={deleteHandler}
+          />
           <div style ={{margin: '1em'}}>
           <Link to="add" class = "ui item">
             <Button icon labelPosition='left'>

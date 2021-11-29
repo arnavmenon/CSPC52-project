@@ -4,40 +4,23 @@ import { Link } from 'react-router-dom';
 import { Icon, Label, Menu, Table, Button } from 'semantic-ui-react'
 
 const ScheduleTable = (props) => {
-  let k = props.data.flights
-  const [flights, setFlights] = useState([])
 
-  useEffect(() => {
-    setFlights(k)
-  },[props.data.flights])
+  const [displayedFlights, setDisplayedFlights] = useState([])
+
+  useEffect(()=>{
+
+    setDisplayedFlights(props.flights);
+    //console.log(props.flights);
+
+  },[props.flights]);
 
 
   const getAirlineName = (airline_id) => {
-    let res = props.data.airlines.find(element => element.ID === airline_id);
+    let res = props.airlines.find(element => element.ID === airline_id);
     if (res === undefined)
       return {ID: '', AL_NAME: '', CODE: ''}
     return res;
   }
-
-
-  const deleteHandler = (flight) => {
-    
-    let f1 = flights.filter(function(e){
-      return e.FLIGHT_CODE != flight.FLIGHT_CODE;
-    });
-    console.log(f1);
-    axios
-      .delete(`http://localhost:3001/api/flight/${flight.FLIGHT_CODE}`)
-      .then((response)=>{
-        setFlights(f1);
-        //console.log(response.data);
-      })
-      .catch((err)=>{
-        console.log(err);
-      })
-
-  }
-
 
 
   return (
@@ -60,7 +43,7 @@ const ScheduleTable = (props) => {
     </Table.Header>
 
     <Table.Body>
-      {flights.map((flight, index) => {
+      {displayedFlights.map((flight, index) => {
 
       let airline_obj=getAirlineName(flight.AIRLINE_ID);
       //console.log(airline_obj);
@@ -77,10 +60,10 @@ const ScheduleTable = (props) => {
       <Table.Cell>{airline_obj.AL_NAME}</Table.Cell>
       <Table.Cell>
          <Button.Group>
-           <Link to = 'update' state = {{...flight, airline_obj}}>
-             <Button color = 'blue'>Update</Button>
-           </Link>
-             <Button color = 'red' onClick = {() => deleteHandler(flight)}>Remove</Button>
+            <Link to = 'update' state = {{...flight, airline_obj}}>
+              <Button color = 'blue'>Update</Button>
+            </Link>
+             <Button color = 'red' onClick = {() => props.deleteHandler(flight)}>Remove</Button>
          </Button.Group>
      </Table.Cell>
       </Table.Row>

@@ -3,7 +3,7 @@ import NavBar from '../../general/NavBar';
 import { Link } from "react-router-dom";
 import { Button, Checkbox, Form, Header } from 'semantic-ui-react'
 import NavBar2 from '../general/NavBar2';
-
+import axios from "axios";
 
 
 function AirlineAdd() {
@@ -12,14 +12,26 @@ function AirlineAdd() {
  const [code, setCode] = useState()
 
  const handleSubmit = (e) => {
-    // AP_NAME, ID, STATE, COUNTRY, CITY
+
     e.preventDefault();
     let res = {
-        ID: id,
-        AL_NAME: alName, 
-        CODE: code
+        id: id,
+        al_name: alName, 
+        code: code
     }
     console.log(res);
+
+    axios
+        .post("http://localhost:3001/api/airline/", res)
+        .then((response)=>{
+            console.log(response);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+
+    alert("New airline added successfully!");
+    
 }
   return (
       <div style={{margin:'20px'}}>

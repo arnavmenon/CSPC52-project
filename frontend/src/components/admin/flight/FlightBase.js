@@ -38,11 +38,35 @@ function Base() {
 
   },[])
 
+  const deleteHandler = (flight) => {
+
+    alert("Are you sure you want to delete flight code " + flight.FLIGHT_CODE + "?");
+    
+    let f1 = flights.filter(function(e){
+      return e.FLIGHT_CODE != flight.FLIGHT_CODE;
+    });
+    
+    axios
+      .delete(`http://localhost:3001/api/flight/${flight.FLIGHT_CODE}`)
+      .then((response)=>{
+        console.log("hi");
+        console.log(response.data,f1);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+
+      setFlights(f1);
+
+  }
+
   return (
       <div style={{margin: '20px'}}> 
           <NavBar2 />
           <Table2
-          data = {{flights, airlines}}
+          flights={flights}
+          airlines={airlines}
+          deleteHandler={deleteHandler}
           />
           <div style ={{margin: '1em'}}>
           <Link to="add" class = "ui item">

@@ -73,7 +73,7 @@ function AirportUpdate() {
                 value = {city}
                 onChange = {(e) => setCity(e.target.value)}/>
             </Form.Field>
-            <Button type='submit'>Add</Button>
+            <Button type='submit'>Update</Button>
             </Form>
     </div>
     </div>

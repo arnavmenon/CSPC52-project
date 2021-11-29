@@ -1,34 +1,25 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Table } from 'semantic-ui-react';
 
 const ScheduleTable = (props) => {
-  let k = props.data
-  let res = [];
-  k.map((x, index) => {
-    res.push(
-    <Table.Row  key = {index}>
-    				
-    <Table.Cell>{x.ID}</Table.Cell>
-    <Table.Cell>{x.AL_NAME}</Table.Cell>
-    <Table.Cell>{x.CODE}</Table.Cell>
-    <Table.Cell>
-        <Button.Group>
-        <Link to = 'update' state = {{x}}>
-            <Button color = 'blue'>Update</Button>
-         </Link>   
-            <Button color = 'red'>Remove</Button>
-        </Button.Group>
-    </Table.Cell>
-  </Table.Row>
-    )
-})
+
+  const [displayedAirlines, setDisplayedAirlines] = useState([]);
+
+  useEffect(()=>{
+
+    setDisplayedAirlines(props.airlines);
+    console.log(props.airlines)
+
+  },[props.airlines]);
+
+
   return(
   <Table celled inverted style = {{width:'max-content', margin: '0 auto'}}>
     <Table.Header>
       <Table.Row>
         <Table.HeaderCell>ID</Table.HeaderCell>
-        <Table.HeaderCell>AL_NAME</Table.HeaderCell>
+        <Table.HeaderCell>Airline Name</Table.HeaderCell>
         <Table.HeaderCell>CODE</Table.HeaderCell>
         <Table.HeaderCell>ACTIONS</Table.HeaderCell>
         
@@ -36,83 +27,24 @@ const ScheduleTable = (props) => {
     </Table.Header>
 
     <Table.Body>
-      {
-        res
-      }
-      {/* <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row> */}
-      
+      {displayedAirlines.map((airline,index) => {
 
+        return (
+          <Table.Row  key = {index}>	
+            <Table.Cell>{airline.ID}</Table.Cell>
+            <Table.Cell>{airline.AL_NAME}</Table.Cell>
+            <Table.Cell>{airline.CODE}</Table.Cell>
+            <Table.Cell>
+                <Button.Group>
+                <Link to = 'update' state = {{...airline}}>
+                    <Button color = 'blue'>Update</Button>
+                </Link>   
+                    <Button color = 'red' onClick = {() => props.deleteHandler(airline)}>Remove</Button>
+                </Button.Group>
+                </Table.Cell>
+          </Table.Row>
+        );
+      })}
 
     </Table.Body>
 
