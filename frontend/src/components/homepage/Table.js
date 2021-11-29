@@ -136,6 +136,7 @@ export default function ScheduleTable (props) {
 
   return (
     <>
+    <div style = {{display:'flex', flexDirection: 'row', alignItems: 'center', justifyContent:'center'}}>
       Display:
       <Dropdown
         inline
@@ -144,12 +145,14 @@ export default function ScheduleTable (props) {
         defaultSelectedLabel={board}
         placeholder={board}
         onChange={handleBoardChange}
+        style = {{margin:'1em'}}
       />
 
       <Search 
         inline
         open={false}
         onSearchChange={handleSearchChange}
+        style = {{margin:'1em'}}
       />
 
       Filter by:
@@ -160,8 +163,9 @@ export default function ScheduleTable (props) {
         defaultSelectedLabel={filter}
         placeholder={filter}
         onChange={handleFilterChange}
+        style = {{margin:'1em'}}
       />  
-      
+      </div>
       <Table celled inverted>
         <Table.Header>
           <Table.Row>

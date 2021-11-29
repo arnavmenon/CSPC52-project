@@ -3,7 +3,7 @@ import axios from "axios"
 import NavBar from '../general/NavBar';
 import ScheduleTable from './Table';
 import { useLocation } from 'react-router-dom'
-import { Header } from 'semantic-ui-react';
+import { Header, Icon } from 'semantic-ui-react';
 
 
 export default function Homepage() {
@@ -43,7 +43,10 @@ export default function Homepage() {
   return (
     <div style={{margin: '20px'}}>
         <NavBar/>
-        <Header size='huge'>Flight Schedules</Header>
+        <Header size='huge'>
+        <Icon name = 'plane' size = 'large'/>
+          Flight Schedules
+          </Header>
         <ScheduleTable 
         flights={flights} 
         airlines={airlines} 
