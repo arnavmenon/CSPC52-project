@@ -38,14 +38,14 @@ module.exports = app => {
                 }
                 else
                 {
-                    res.send('Invalid Credentials!!').status(401)
+                    res.status(401).send('Invalid Credentials!!');
                 }
                 res.end();
             });
         }
         else
         {
-            res.send('Please enter Username and Password!');
+            res.status(400).send('Please enter Username and Password!');
 		    res.end();
         }
     });
@@ -56,6 +56,12 @@ module.exports = app => {
         else
             res.send('Login as Admin User!!');
         res.end();
+    });
+
+    router.get('/logout', (req, res) => {
+        req.session.destroy();
+        console.log('User has been logged out!!');
+        res.status(200).send('User has been logged out !');
     });
 
     app.use('/admin', router);

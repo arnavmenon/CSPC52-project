@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import NavBar from '../general/NavBar';
+import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form } from 'semantic-ui-react'
 
@@ -14,12 +15,23 @@ function Login(props) {
     // AP_NAME, ID, STATE, COUNTRY, CITY
     e.preventDefault();
     let res = {
-        USERNAME: username,
-        PASSWORD: pass
+        username: username,
+        password: pass
     }
     console.log(res);
     // const history = useHistory()
-    navigate('/admin/flight')
+    axios
+        .post("http://localhost:3001/admin/auth", res)
+        .then((response)=>{
+            console.log(response.status);
+            alert("Welcome Back!");
+            navigate('/admin/flight')
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+
+    
 }
 
   return (

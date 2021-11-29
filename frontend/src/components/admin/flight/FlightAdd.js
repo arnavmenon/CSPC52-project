@@ -57,7 +57,7 @@ function FlightAdd() {
 
         console.log(res);
 
-        /* axios
+        axios
             .put("http://localhost:3001/api/flight/", res)
             .then((response)=>{
                 console.log(response);
@@ -67,7 +67,7 @@ function FlightAdd() {
             })
 
         alert("New flight added successfully!");
-        navigate('/admin/flight') */
+        navigate('/admin/flight') 
     }
 
     let location = useLocation()
@@ -76,7 +76,7 @@ function FlightAdd() {
     return (
         <div style={{margin:'20px'}}>
             <NavBar2/>
-            <Header size='large'>Add New Entry</Header>
+            <Header size='large'>Add New Flight</Header>
         <div style={{margin: '0 auto', width: '50vw', textAlign:'left'}}>
                 
                 <Form onSubmit = {handleSubmit}>

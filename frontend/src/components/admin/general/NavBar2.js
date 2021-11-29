@@ -1,6 +1,25 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-const NavBar2 = () => (
+import axios from 'axios';
+import { Form } from 'semantic-ui-react';
+import { BrowserRouter as Router, Switch, Route, Link, useNavigate } from "react-router-dom";
+const NavBar2 = () => {
+  const navigate = useNavigate()
+  const handleSubmit = () => {
+    console.log('logout initiated.')
+    axios
+        .get("http://localhost:3001/admin/logout/")
+        .then((response)=>{
+            console.log(response);
+            navigate('/')
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    
+  }
+  
+return (
+
 <div class="ui secondary pointing menu">
     <div class="right menu">
       <Link to="/admin/flight" class = "ui item">
@@ -12,13 +31,15 @@ const NavBar2 = () => (
       <Link to="/admin/airport" class = "ui item">
         Airport
       </Link>
-      <Link to="/" class = "ui item">
+      <Form onSubmit = {() => handleSubmit()}>
+      <button type="submit" class = "ui item">
         Logout
-      </Link>
+      </button>
+      </Form>
     </div>
   </div>
 
-)
+)}
 
 export default NavBar2
 
