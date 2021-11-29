@@ -1,4 +1,5 @@
 const Flight = require('../db/models/flight.model.js');
+const Contains = require('../db/models/contains.model.js');
 
 // Create and Save a new Flight
 exports.create = (req, res) => {
@@ -32,7 +33,12 @@ exports.create = (req, res) => {
                     message : err.message || 'Error during creation of Flight Object'
                 });
         }
-        else res.send(data);
+        else
+        {
+            Contains.create(new Contains({flight_code: flight.flight_code, airline_id: flight.src}), result);
+            Contains.create(new COntains({flight_code: flight.flight_code, airline_id: flight.dest}), result);
+            res.send(data);
+        }
     });
 };
 
@@ -171,9 +177,13 @@ exports.remove = (req, res) => {
             }
         }
         else
+        {
+            Contains.remove(flight_code, result);
             res.send({
-                message: `Flight with Flight Code ${req.params.flight_code} successfully removed`
-            })
+              message: `Flight with Flight Code ${req.params.flight_code} successfully removed`
+            });
+        }
+            
     });
 };
 
