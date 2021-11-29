@@ -1,30 +1,17 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Table } from 'semantic-ui-react';
 
 const ScheduleTable = (props) => {
-  let k = props.data
-  let res = [];
-  k.map((x, index) => {
-    res.push(
-    <Table.Row  key = {index}>
-    				
-    <Table.Cell>{x.AP_NAME}</Table.Cell>
-    <Table.Cell>{x.ID}</Table.Cell>
-    <Table.Cell>{x.STATE}</Table.Cell>
-    <Table.Cell>{x.COUNTRY}</Table.Cell>
-    <Table.Cell>{x.CITY}</Table.Cell>
-    <Table.Cell>
-        <Button.Group>
-        <Link to = 'update' state = {{x}}>
-            <Button color = 'blue'>Update</Button>
-        </Link>
-            <Button color = 'red'>Remove</Button>
-        </Button.Group>
-    </Table.Cell>
-  </Table.Row>
-    )
-})
+  const [displayedAirports, setDisplayedAirports] = useState([]);
+
+  useEffect(()=>{
+
+    setDisplayedAirports(props.airports);
+    console.log(props.airports)
+
+  },[props.airports]);
+
 return (
 
   <Table celled inverted style = {{width: 'max-content', margin: '0 auto'}}>
@@ -40,114 +27,27 @@ return (
       </Table.Row>
     </Table.Header>
     <Table.Body>
-    {
-    res
-    }
+    {displayedAirports.map((airport,index) => {
+
+    return (
+    <Table.Row  key = {index}>	
+      <Table.Cell>{airport.AP_NAME}</Table.Cell>
+    <Table.Cell>{airport.ID}</Table.Cell>
+    <Table.Cell>{airport.STATE}</Table.Cell>
+    <Table.Cell>{airport.COUNTRY}</Table.Cell>
+    <Table.Cell>{airport.CITY}</Table.Cell>
+      <Table.Cell>
+          <Button.Group>
+          <Link to = 'update' state = {{...airport}}>
+              <Button color = 'blue'>Update</Button>
+          </Link>   
+              <Button color = 'red' onClick = {() => props.deleteHandler(airport)}>Remove</Button>
+          </Button.Group>
+          </Table.Cell>
+    </Table.Row>
+    );
+    })}
     </Table.Body>
-{/* 
-    
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      
-
-
-    </Table.Body> */}
 
     {/* <Table.Footer>
       <Table.Row>

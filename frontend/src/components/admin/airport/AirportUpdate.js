@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
+import axios from 'axios';
 import NavBar from '../../general/NavBar';
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form, Header } from 'semantic-ui-react'
 import NavBar2 from '../general/NavBar2';
 
@@ -12,9 +13,9 @@ function AirportUpdate() {
     const [sta, setSta] = useState()
     const [country, setCountry] = useState()
     const [city, setCity] = useState()
-
+    const navigate = useNavigate()
     const location = useLocation()
-    const {x} = location.state
+    const x = location.state
     
     useEffect(() => {
         setAirn(x.AP_NAME)
@@ -27,12 +28,25 @@ function AirportUpdate() {
 
     const handleSubmit = (e) => {
         // AP_NAME, ID, STATE, COUNTRY, CITY
+
         e.preventDefault();
         let res = {
-            AP_NAME:airn,
-            ID: id, STATE: sta, COUNTRY: country, CITY: city
+            ap_name:airn,
+            id: id, state: sta, country: country, city: city
         }
         console.log(res);
+
+        axios
+        .put(`http://localhost:3001/api/airport/${id}`, res)
+        .then((response)=>{
+            console.log(response);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+
+    alert("Airport updated successfully!");
+    navigate('/admin/airport')
     }
 
   return (
