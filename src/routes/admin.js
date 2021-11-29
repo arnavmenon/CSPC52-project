@@ -58,5 +58,11 @@ module.exports = app => {
         res.end();
     });
 
+    router.get('/logout', (req, res) => {
+        req.session.destroy();
+        console.log('User has been logged out!!');
+        res.send('User has been logged out !').status(400);
+    });
+
     app.use('/admin', router);
 };
