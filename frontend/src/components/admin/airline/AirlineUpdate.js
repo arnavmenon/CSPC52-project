@@ -1,6 +1,6 @@
 import React, { useState,  useEffect } from 'react'
 import NavBar from '../../general/NavBar';
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form, Header } from 'semantic-ui-react'
 import NavBar2 from '../general/NavBar2';
 import axios from "axios";
@@ -9,7 +9,7 @@ function AirlineUpdate() {
     const [id, setId] = useState('')
     const [alName, setAlName] = useState('')
     const [code, setCode] = useState('')
-
+    const navigate = useNavigate()
     const location = useLocation()
     const x = location.state
     console.log(x);
@@ -40,6 +40,7 @@ function AirlineUpdate() {
         })
 
     alert("Airline updated successfully!");
+    navigate('/admin/airline')
 }
   return (
       <div style={{margin:'20px'}}>

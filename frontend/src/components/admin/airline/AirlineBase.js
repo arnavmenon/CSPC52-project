@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import axios from "axios";
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import { Button, Checkbox, Form,Icon } from 'semantic-ui-react'
-import Table2 from './Table2';
+import { Button, Icon } from 'semantic-ui-react';
 import NavBar2 from '../general/NavBar2';
-import axios from "axios"
+import Table2 from './Table2';
 
 
 function AirlineBase() {

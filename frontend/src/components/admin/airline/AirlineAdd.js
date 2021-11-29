@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import NavBar from '../../general/NavBar';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form, Header } from 'semantic-ui-react'
 import NavBar2 from '../general/NavBar2';
 import axios from "axios";
@@ -10,7 +10,7 @@ function AirlineAdd() {
  const [id, setId] = useState()
  const [alName, setAlName] = useState()
  const [code, setCode] = useState()
-
+ const navigate = useNavigate()
  const handleSubmit = (e) => {
 
     e.preventDefault();
@@ -31,6 +31,7 @@ function AirlineAdd() {
         })
 
     alert("New airline added successfully!");
+    navigate('/admin/airline')
     
 }
   return (
