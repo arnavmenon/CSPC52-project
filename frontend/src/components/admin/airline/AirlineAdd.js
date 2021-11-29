@@ -37,7 +37,7 @@ function AirlineAdd() {
   return (
       <div style={{margin:'20px'}}>
           <NavBar2/>
-          <Header size='large'>Add New Entry</Header>
+          <Header size='large'>Add New Airline</Header>
     <div style={{margin: '0 auto', width: '50vw', textAlign:'left'}}>
             
             <Form onSubmit = {handleSubmit}>
