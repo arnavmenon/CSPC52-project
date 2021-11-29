@@ -1,34 +1,45 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import axios from "axios"
 import { Link } from 'react-router-dom';
 import { Icon, Label, Menu, Table, Button } from 'semantic-ui-react'
 
 const ScheduleTable = (props) => {
-  let k = props.data
-  let res = [];
-  k.map((x, index) => {
-    res.push(
-    <Table.Row key = {index}>
-    				
-    <Table.Cell>{x.FLIGHT_CODE}</Table.Cell>
-    <Table.Cell>{x.SOURCE}</Table.Cell>
-    <Table.Cell>{x.DESTINATION}</Table.Cell>
-    <Table.Cell>{x.ARRIVAL}</Table.Cell>
-    <Table.Cell>{x.DEPARTURE}</Table.Cell>
-    <Table.Cell>{x.STATUS}</Table.Cell>
-    <Table.Cell>{x.DURATION}</Table.Cell>
-    <Table.Cell>{x.FLIGHTTYPE}</Table.Cell>
-    <Table.Cell>{x.AIRLINE}</Table.Cell>
-    <Table.Cell>
-        <Button.Group>
-          <Link to = 'update' state = {{x}}>
-            <Button color = 'blue'>Update</Button>
-          </Link>
-            <Button color = 'red'>Remove</Button>
-        </Button.Group>
-    </Table.Cell>
-  </Table.Row>
-    )
-})
+  let k = props.data.flights
+  const [flights, setFlights] = useState([])
+
+  useEffect(() => {
+    setFlights(k)
+  },[props.data.flights])
+
+
+  const getAirlineName = (airline_id) => {
+    let res = props.data.airlines.find(element => element.ID === airline_id);
+    if (res === undefined)
+      return {ID: '', AL_NAME: '', CODE: ''}
+    return res;
+  }
+
+
+  const deleteHandler = (flight) => {
+    
+    let f1 = flights.filter(function(e){
+      return e.FLIGHT_CODE != flight.FLIGHT_CODE;
+    });
+    console.log(f1);
+    axios
+      .delete(`http://localhost:3001/api/flight/${flight.FLIGHT_CODE}`)
+      .then((response)=>{
+        setFlights(f1);
+        //console.log(response.data);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+
+  }
+
+
+
   return (
   <Table celled inverted style = {{width: '95vw', margin: '0 auto'}}>
     <Table.Header>
@@ -49,102 +60,33 @@ const ScheduleTable = (props) => {
     </Table.Header>
 
     <Table.Body>
-      {
-        res
-      }
-      {/* <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
+      {flights.map((flight, index) => {
+
+      let airline_obj=getAirlineName(flight.AIRLINE_ID);
+      //console.log(airline_obj);
+      return (
       <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
+      <Table.Cell>{flight.FLIGHT_CODE}</Table.Cell>
+      <Table.Cell>{flight.SOURCE}</Table.Cell>
+      <Table.Cell>{flight.DESTINATION}</Table.Cell>
+      <Table.Cell>{flight.START_TIME}</Table.Cell>
+      <Table.Cell>{flight.END_TIME}</Table.Cell>
+      <Table.Cell>{flight.STATUS}</Table.Cell>
+      <Table.Cell>{flight.DURATION}</Table.Cell>
+      <Table.Cell>{flight.FLIGHT_TYPE}</Table.Cell>
+      <Table.Cell>{airline_obj.AL_NAME}</Table.Cell>
+      <Table.Cell>
+         <Button.Group>
+           <Link to = 'update' state = {{...flight, airline_obj}}>
+             <Button color = 'blue'>Update</Button>
+           </Link>
+             <Button color = 'red' onClick = {() => deleteHandler(flight)}>Remove</Button>
+         </Button.Group>
+     </Table.Cell>
       </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>cell</Table.Cell>
-        <Table.Cell>Cell</Table.Cell>
-        <Table.Cell>
-            <Button.Group>
-                <Button color = 'blue'>Update</Button>
-                <Button color = 'red'>Remove</Button>
-            </Button.Group>
-        </Table.Cell>
-        
-      </Table.Row> */}
+      );
+      })}
       
-
-
     </Table.Body>
 
     <Table.Footer>

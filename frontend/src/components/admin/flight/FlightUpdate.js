@@ -17,19 +17,19 @@ const [fli, setFli] = useState('')
 const [airl, setAirl] = useState('')
 
 const location = useLocation()
-const {x} = location.state
+const x = location.state
 
 
 useEffect(() => {
     setCode(x.FLIGHT_CODE)
     setSrc(x.SOURCE)
     setDest(x.DESTINATION)
-    setArr(x.ARRIVAL)
-    setDepa(x.DEPARTURE)
+    setArr(x.END_TIME)
+    setDepa(x.START_TIME)
     setStat(x.STATUS)
     setDur(x.DURATION)
-    setFli(x.FLIGHTTYPE)
-    setAirl(x.AIRLINE)
+    setFli(x.FLIGHT_TYPE)
+    setAirl(x.airline_obj.AL_NAME)
 }, [])
 
 const handleSubmit = () => {

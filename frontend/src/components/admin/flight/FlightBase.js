@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import { Link } from "react-router-dom";
 import { Button, Icon } from 'semantic-ui-react'
 import Table2 from './Table2';
@@ -6,21 +7,42 @@ import NavBar2 from '../general/NavBar2';
 
 
 function Base() {
+  const [flights, setFlights] = useState([]);
+  const [airlines, setAirlines] = useState([]);
+
+  useEffect(()=>{
+
+    axios
+      .get("http://localhost:3001/api/flight/")
+      .then((response)=>{
+        setFlights(response.data);
+        //console.log(response.data);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+
+  },[])
+
+  useEffect(()=>{
+
+    axios
+      .get("http://localhost:3001/api/airline/")
+      .then((response)=>{
+        setAirlines(response.data);
+        //console.log(response.data);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+
+  },[])
 
   return (
       <div style={{margin: '20px'}}> 
           <NavBar2 />
           <Table2
-          data = {[
-            {
-              FLIGHT_CODE: 'AI2014', SOURCE: 'MAA', DESTINATION: 'JFK', ARRIVAL: '02:10', DEPARTURE: '23:15', STATUS: 'On-time', 
-              DURATION: '23hr', FLIGHTTYPE: 'Non-stop', AIRLINE: 'Air India'
-            },
-            {
-              FLIGHT_CODE: 'AI2015', SOURCE: 'MAA', DESTINATION: 'JFK', ARRIVAL: '02:15', DEPARTURE: '23:15', STATUS: 'On-time', 
-              DURATION: '23hr', FLIGHTTYPE: 'Non-stop', AIRLINE: 'Air India'
-            }
-          ]}
+          data = {{flights, airlines}}
           />
           <div style ={{margin: '1em'}}>
           <Link to="add" class = "ui item">
