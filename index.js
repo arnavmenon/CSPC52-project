@@ -15,8 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 
-app.use('/auth', require('./src/routes/admin'));
-
+require("./src/routes/admin.js")(app);
 require("./src/routes/airport.routes.js")(app);
 require("./src/routes/airline.routes.js")(app);
 require("./src/routes/flight.routes.js")(app);
@@ -24,4 +23,3 @@ require("./src/routes/flight.routes.js")(app);
 app.listen(port, ()=>{
     console.log(`Server started on port ${port}`)
 })
-
