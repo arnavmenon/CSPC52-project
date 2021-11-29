@@ -54,6 +54,7 @@ function AirlineUpdate() {
                 <input placeholder='ID' 
                 value = {id}
                 onChange = {(e) => {setId(e.target.value)}}
+                disabled
                 />
             </Form.Field>
             <Form.Field>

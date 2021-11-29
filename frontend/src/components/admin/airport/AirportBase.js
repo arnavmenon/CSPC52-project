@@ -46,14 +46,14 @@ function AirportBase() {
   }
 
   return (
-      <div style={{margin: '20px'}}> 
-          <NavBar2/>
+      <div style={{padding: '20px'}}> 
+          <NavBar2 tab_name="Airports"/>
           <Table2 airports={airports}
             deleteHandler={deleteHandler}
           />
           <div style ={{margin: '1em'}}>
           <Link to="add" class = "ui item">
-            <Button icon labelPosition='left'>
+            <Button icon labelPosition='left' color='green'>
                 <Icon name='plus' />
                    Add
                 </Button>

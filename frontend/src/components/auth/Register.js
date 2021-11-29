@@ -42,7 +42,7 @@ function Register() {
 
  
   return (
-    <div style={{margin: '20px'}}>
+    <div style={{padding: '20px'}}>
 
 
     <NavBar/>

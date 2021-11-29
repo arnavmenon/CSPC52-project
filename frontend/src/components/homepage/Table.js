@@ -36,6 +36,16 @@ export default function ScheduleTable (props) {
     }
   ]
 
+  const getAirlineName = (airline_id) => {
+
+    let res = props.airlines.find(element => element.ID === airline_id);
+    console.log(res, props.airlines);
+    if (res === undefined)
+      return {ID: '', AL_NAME: '', CODE: ''}
+    return res;
+
+  }
+
   function setDisplay (){
 
     let requiredFlights;
@@ -62,11 +72,19 @@ export default function ScheduleTable (props) {
       return e.DESTINATION=="MAA";
     });
 
+    f1.forEach((obj)=>{
+      console.log(obj.AIRLINE_ID);
+      obj.air_name=getAirlineName(obj.AIRLINE_ID).AL_NAME;
+    })
+    f2.forEach((obj)=>{
+      obj.air_name=getAirlineName(obj.AIRLINE_ID).AL_NAME;
+    })
+
     setDepFlights(f1);
     setArrFlights(f2);
     console.log(f1,f2);
 
-  },[props.flights])
+  },[props.flights, props.airlines])
 
   useEffect(()=>{
 
@@ -81,16 +99,10 @@ export default function ScheduleTable (props) {
 
   },[props.flights, board, depFlights, arrFlights]);
 
-  const getAirlineName = (airline_id) => {
-
-    let res = props.airlines.find(element => element.ID === airline_id);
-    if (res === undefined)
-      return {ID: '', AL_NAME: '', CODE: ''}
-    return res;
-
-  }
 
   const handleSearchChange = (event) =>{
+
+    event.preventDefault();
 
     let searchTerm=event.target.value;
 
@@ -105,17 +117,38 @@ export default function ScheduleTable (props) {
 
     //console.log(filter, board);
 
-    if(board=="Departures"){
-      res = depFlights.filter(function(e){
-        return searchRegExp.test(e.DESTINATION);
-      });
+    if (filter == "Location"){
+
+      if(board=="Departures"){
+        res = depFlights.filter(function(e){
+          return searchRegExp.test(e.DESTINATION);
+        });
+      }
+  
+      else{
+        res = arrFlights.filter(function(e){
+          return searchRegExp.test(e.SOURCE);
+        });
+      }
+
     }
 
     else{
-      res = arrFlights.filter(function(e){
-        return searchRegExp.test(e.SOURCE);
-      });
+
+      if(board=="Departures"){
+        res = depFlights.filter(function(e){
+          return searchRegExp.test(e.air_name);
+        });
+      }
+  
+      else{
+        res = arrFlights.filter(function(e){
+          return searchRegExp.test(e.air_name);
+        });
+      }
     }
+
+    
 
     //console.log(res);
     setDisplayedFlights(res);
@@ -166,17 +199,17 @@ export default function ScheduleTable (props) {
         style = {{margin:'1em'}}
       />  
       </div>
-      <Table celled inverted>
+      <Table celled inverted textAlign='center'>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Flight_Code</Table.HeaderCell>
+            <Table.HeaderCell>Flight Code</Table.HeaderCell>
             <Table.HeaderCell>Source</Table.HeaderCell>
             <Table.HeaderCell>Destination</Table.HeaderCell>
             <Table.HeaderCell>Arrival</Table.HeaderCell>
             <Table.HeaderCell>Departure</Table.HeaderCell>
             <Table.HeaderCell>Status</Table.HeaderCell>
             <Table.HeaderCell>Duration</Table.HeaderCell>
-            <Table.HeaderCell>Flight_Type</Table.HeaderCell>
+            <Table.HeaderCell>Flight Type</Table.HeaderCell>
             <Table.HeaderCell>Airline</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
@@ -185,7 +218,7 @@ export default function ScheduleTable (props) {
 
         {displayedFlights.map((flight, index) => {
 
-            let airline_obj=getAirlineName(flight.AIRLINE_ID);
+            //let airline_obj=getAirlineName(flight.AIRLINE_ID);
             //console.log(airline_obj);
             return (
               <Table.Row>
@@ -197,7 +230,7 @@ export default function ScheduleTable (props) {
                 <Table.Cell>{flight.STATUS}</Table.Cell>
                 <Table.Cell>{flight.DURATION}</Table.Cell>
                 <Table.Cell>{flight.FLIGHT_TYPE}</Table.Cell>
-                <Table.Cell>{airline_obj.AL_NAME}</Table.Cell>
+                <Table.Cell>{flight.air_name}</Table.Cell>
               </Table.Row>
             );
         })}

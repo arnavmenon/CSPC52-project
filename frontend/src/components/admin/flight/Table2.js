@@ -24,20 +24,20 @@ const ScheduleTable = (props) => {
 
 
   return (
-  <Table celled inverted style = {{width: '95vw', margin: '0 auto'}}>
+  <Table celled inverted style = {{width: '95vw', margin: '0 auto'}} textAlign='center'>
     <Table.Header>
       <Table.Row>
       {/* FLIGHT_CODE, SOURCE, DESTINATION, ARRIVAL, DEPARTURE, STATUS, DURATION, FLIGHTTYPE */}
-        <Table.HeaderCell>Flight_Code</Table.HeaderCell>
+        <Table.HeaderCell>Flight Code</Table.HeaderCell>
         <Table.HeaderCell>Source</Table.HeaderCell>
         <Table.HeaderCell>Destination</Table.HeaderCell>
         <Table.HeaderCell>Arrival</Table.HeaderCell>
         <Table.HeaderCell>Departure</Table.HeaderCell>
         <Table.HeaderCell>Status</Table.HeaderCell>
         <Table.HeaderCell>Duration</Table.HeaderCell>
-        <Table.HeaderCell>Flight_Type</Table.HeaderCell>
+        <Table.HeaderCell>Flight Type</Table.HeaderCell>
         <Table.HeaderCell>Airline</Table.HeaderCell>
-        <Table.HeaderCell>Actions</Table.HeaderCell>
+        <Table.HeaderCell>ACTIONS</Table.HeaderCell>
         
       </Table.Row>
     </Table.Header>

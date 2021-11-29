@@ -15,12 +15,12 @@ const ScheduleTable = (props) => {
 
 
   return(
-  <Table celled inverted style = {{width:'max-content', margin: '0 auto'}}>
+  <Table celled inverted style = {{width:'max-content', margin: '0 auto'}} textAlign='center'>
     <Table.Header>
       <Table.Row>
         <Table.HeaderCell>ID</Table.HeaderCell>
         <Table.HeaderCell>Airline Name</Table.HeaderCell>
-        <Table.HeaderCell>CODE</Table.HeaderCell>
+        <Table.HeaderCell>Airline Code</Table.HeaderCell>
         <Table.HeaderCell>ACTIONS</Table.HeaderCell>
         
       </Table.Row>

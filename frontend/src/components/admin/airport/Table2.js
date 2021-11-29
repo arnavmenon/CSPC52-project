@@ -14,14 +14,14 @@ const ScheduleTable = (props) => {
 
 return (
 
-  <Table celled inverted style = {{width: 'max-content', margin: '0 auto'}}>
+  <Table celled inverted style = {{width: 'max-content', margin: '0 auto'}} textAlign='center'>
     <Table.Header>
       <Table.Row>
-        <Table.HeaderCell>AIRPORT</Table.HeaderCell>
+        <Table.HeaderCell>Airport Name</Table.HeaderCell>
         <Table.HeaderCell>ID</Table.HeaderCell>
-        <Table.HeaderCell>STATE</Table.HeaderCell>
-        <Table.HeaderCell>COUNTRY</Table.HeaderCell>
-        <Table.HeaderCell>CITY</Table.HeaderCell>
+        <Table.HeaderCell>State</Table.HeaderCell>
+        <Table.HeaderCell>Country</Table.HeaderCell>
+        <Table.HeaderCell>City</Table.HeaderCell>
         <Table.HeaderCell>ACTIONS</Table.HeaderCell>
         
       </Table.Row>

@@ -13,11 +13,12 @@ import AirportBase from './components/admin/airport/AirportBase';
 import FlightUpdate from './components/admin/flight/FlightUpdate';
 import AirlineUpdate from './components/admin/airline/AirlineUpdate';
 import AirportUpdate from './components/admin/airport/AirportUpdate';
+import image from "./assets/image.jpg"
 
 function App() {
   return (
     <Router>
-    <div className="App">
+    <div className="App" style={{backgroundImage: `url(${image})`, height: "100vh"}}>
         <div>
         <Routes>
         <Route path="/" element = {<Homepage />} />

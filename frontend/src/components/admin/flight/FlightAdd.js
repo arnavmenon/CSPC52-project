@@ -58,7 +58,7 @@ function FlightAdd() {
         console.log(res);
 
         axios
-            .put("http://localhost:3001/api/flight/", res)
+            .post("http://localhost:3001/api/flight/", res)
             .then((response)=>{
                 console.log(response);
             })
@@ -67,7 +67,7 @@ function FlightAdd() {
             })
 
         alert("New flight added successfully!");
-        navigate('/admin/flight') 
+        //navigate('/admin/flight') 
     }
 
     let location = useLocation()

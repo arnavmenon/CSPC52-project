@@ -47,16 +47,16 @@ function AirlineBase() {
   
 
   return (
-      <div style={{margin: '20px'}}> 
-          <NavBar2/>
+      <div style={{padding: '20px'}}> 
+          <NavBar2 tab_name="Airlines"/>
           <Table2
             airlines={airlines}
             deleteHandler={deleteHandler}
           />
           <div style ={{margin: '1em'}}>
           <Link to="add" class = "ui item">
-            <Button icon labelPosition='left'>
-                <Icon name='plus' />
+            <Button icon labelPosition='left' color='green'>
+                <Icon name='plus'/>
                    Add
                 </Button>
           </Link>

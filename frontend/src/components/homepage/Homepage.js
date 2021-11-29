@@ -41,7 +41,7 @@ export default function Homepage() {
   },[])
 
   return (
-    <div style={{margin: '20px'}}>
+    <div style={{padding: '20px'}}>
         <NavBar/>
         <Header size='huge'>
         <Icon name = 'plane' size = 'large'/>

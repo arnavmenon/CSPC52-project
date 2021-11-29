@@ -67,7 +67,9 @@ function AirportUpdate() {
                 <label>ID</label>
                 <input placeholder='ID' 
                 value = {id}
-                onChange = {(e) => setId(e.target.value)}/>
+                onChange = {(e) => setId(e.target.value)}
+                disabled
+                />
             </Form.Field>
             <Form.Field>
                 <label>STATE</label>
