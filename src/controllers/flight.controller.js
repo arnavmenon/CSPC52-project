@@ -35,8 +35,8 @@ exports.create = (req, res) => {
         }
         else
         {
-            Contains.create(new Contains({flight_code: flight.flight_code, airline_id: flight.src}), result);
-            Contains.create(new COntains({flight_code: flight.flight_code, airline_id: flight.dest}), result);
+            Contains.create(new Contains({flight_code: flight.flight_code, airport_id: flight.src}));
+            Contains.create(new Contains({flight_code: flight.flight_code, airport_id: flight.dest}));
             res.send(data);
         }
     });
