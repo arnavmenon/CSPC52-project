@@ -2,7 +2,7 @@
 ## CSPC52 Mini Project
 
 ReactJS + NodeJS and MySQL
-By: Adarsh (001), Arnav (017), Ashwath (019)
+<br/><br/>By: Adarsh (001), Arnav (017), Ashwath (019)
 ## setup
 
 ### db
@@ -11,9 +11,10 @@ By: Adarsh (001), Arnav (017), Ashwath (019)
 ### backend
 
 1. `npm i` in  root directory
-2. Create `src/env/.env` from `src/env/.env.example`
+2. Create `src/env/.env` from `src/env/.env.example` (Set port as 3001)
 3. Run `node index.js`
 
 ### frontend
 
-`cd frontend` then `npm i` then `npm start`
+1. `cd frontend` then `npm i` then `npm start`
+2. Go to http://localhost:3000/
