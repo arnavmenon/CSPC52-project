@@ -1,11 +1,20 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import axios from 'axios';
 import { Form, Header } from 'semantic-ui-react';
 import { BrowserRouter as Router, Switch, Route, Link, useNavigate } from "react-router-dom";
 const NavBar2 = (props) => {
   const navigate = useNavigate()
+
+  useEffect(() => {
+
+    if(localStorage.getItem("loggedIn") != "true"){
+      navigate('/');
+    }
+  })
+
   const handleSubmit = () => {
-    console.log('logout initiated.')
+    console.log('logout initiated.');
+    localStorage.removeItem("loggedIn");
     axios
         .get("http://localhost:3001/admin/logout/")
         .then((response)=>{
