@@ -3,7 +3,7 @@ import axios from 'axios';
 import NavBar from '../general/NavBar';
 import { Link, useNavigate } from "react-router-dom";
 import { Button, Checkbox, Form } from 'semantic-ui-react'
-
+import sha256 from 'crypto-js/sha256';
 
 
 function Register() {
@@ -23,17 +23,19 @@ function Register() {
     // AP_NAME, ID, STATE, COUNTRY, CITY
     e.preventDefault();
     if(pass === pass2){
+      let hashed=sha256(pass).toString();
       let res = {
         username: username,
-        password: pass
+        password: hashed
       }
-      console.log(res);
+      
+      //console.log(res);
       axios
         .post("http://localhost:3001/admin/register", res)
         .then((response)=>{
             console.log(response.status);
             localStorage.setItem('loggedIn', "true");
-            alert("new user added.");
+            alert("New user added.");
             navigate('/admin/flight')
         })
         .catch((err)=>{

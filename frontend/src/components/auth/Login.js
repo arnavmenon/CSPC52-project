@@ -21,16 +21,17 @@ function Login(props) {
   const handleSubmit = (e) => {
     // AP_NAME, ID, STATE, COUNTRY, CITY
     e.preventDefault();
+    let hashed=sha256(pass).toString();
     let res = {
         username: username,
-        password: pass
+        password: hashed
     }
-    console.log(res);
+    //console.log(res);
     // const history = useHistory()
     axios
         .post("http://localhost:3001/admin/auth", res)
         .then((response)=>{
-            console.log(response.status);
+            //console.log(response.status);
             localStorage.setItem('loggedIn', "true");
             alert("Welcome Back!");
             navigate('/admin/flight')
