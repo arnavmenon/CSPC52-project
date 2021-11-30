@@ -2,7 +2,7 @@
 ## CSPC52 Mini Project
 
 ReactJS + NodeJS and MySQL
-
+By: Adarsh (001), Arnav (017), Ashwath (019)
 ## setup
 
 ### db

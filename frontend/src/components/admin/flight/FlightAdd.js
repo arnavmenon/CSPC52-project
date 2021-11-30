@@ -67,7 +67,7 @@ function FlightAdd() {
             })
 
         alert("New flight added successfully!");
-        //navigate('/admin/flight') 
+        navigate('/admin/flight') 
     }
 
     let location = useLocation()
