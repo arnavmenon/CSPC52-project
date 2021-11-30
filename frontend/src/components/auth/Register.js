@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import NavBar from '../general/NavBar';
 import { Link, useNavigate } from "react-router-dom";
@@ -11,6 +11,13 @@ function Register() {
   const [pass, setPass] = useState()
   const [pass2, setPass2] = useState()
   const navigate = useNavigate()
+
+  useEffect(() => {
+
+    if(localStorage.getItem("loggedIn") == "true"){
+      navigate('/admin/flight');
+    }
+  })
 
   const handleSubmit = (e) => {
     // AP_NAME, ID, STATE, COUNTRY, CITY
@@ -25,11 +32,13 @@ function Register() {
         .post("http://localhost:3001/admin/register", res)
         .then((response)=>{
             console.log(response.status);
+            localStorage.setItem('loggedIn', "true");
             alert("new user added.");
             navigate('/admin/flight')
         })
         .catch((err)=>{
             console.log(err);
+            alert("Unable to register!");
         })
 
 
